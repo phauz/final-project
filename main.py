@@ -11,7 +11,18 @@ win = pygame.display.set_mode(SCREEN_W, SCREEN_H)
 clock = pygame.time.Clock()
 steps = 10
 
-RUNNING = [pygame.image.load(os.path.join(("images/outline", "_Run.png"))]
+# todo add backdrop and and other images/sounds and other game variables
+
+running = [pygame.image.load(os.path.join("images/running", "run1.png")),
+           pygame.image.load(os.path.join("images/running", "run2.png")),
+           pygame.image.load(os.path.join("images/running", "run3.png")),
+           pygame.image.load(os.path.join("images/running", "run4.png")),
+           pygame.image.load(os.path.join("images/running", "run5.png")),
+           pygame.image.load(os.path.join("images/running", "run6.png")),
+           pygame.image.load(os.path.join("images/running", "run7.png")),
+           pygame.image.load(os.path.join("images/running", "run8.png")),
+           pygame.image.load(os.path.join("images/running", "run9.png")),
+           pygame.image.load(os.path.join("images/running", "run10.png"))]
 
 cave_sounds = pygame.mixer.Sound.load("sounds/cavesounds.mp3.wav")
 
@@ -21,7 +32,7 @@ class knight:
     Y_POS = 500
     def __init__(self):
         
-        self.running = RUNNING
+        self.running = running
         self.userInput = pygame.key.get_pressed()
         
         self.knight_rect = self.running.get_rect()
