@@ -13,7 +13,7 @@ steps = 10
 
 RUNNING = [pygame.image.load(os.path.join(("images/outline", "_Run.png"))]
 
-cave_sounds = pygame.mixer.Sound("sounds/cavesounds.mp3.wav")
+cave_sounds = pygame.mixer.Sound.load("sounds/cavesounds.mp3.wav")
 
 
 class knight:
