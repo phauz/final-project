@@ -7,9 +7,9 @@ pygame.font.init()
 
 # screen variables
 pygame.display.set_caption("final project")
-SCREEN_W = 1100
-SCREEN_H = 600
-win = pygame.display.set_mode((SCREEN_W, SCREEN_H))
+WIN_W = 1100
+WIN_H = 600
+win = pygame.display.set_mode((WIN_W, WIN_H))
 
 vel = 5
 
@@ -70,7 +70,7 @@ class knight:
     def running(self, userInput):
 
         
-        if userInput[pygame.K_RIGHT] and [pygame.K_LSHIFT] and x < SCREEN_W - width - vel:
+        if userInput[pygame.K_RIGHT] and [pygame.K_LSHIFT] and x < WIN_W - width - vel:
             x += vel
             self.running_right = True
             self.running_left = False
@@ -130,7 +130,7 @@ run = True
 welcomeMessage = fontMenu.render("Welcome to my game", True, (0,0,0))
 while run:
     
-    win.blit(tileset, (0,400))
+    win.blit(tileset, (WIN_H,100))
     # welcomeMessageRect = welcomeMessage.get_rect()
     # welcomeMessage.center = ((SCREEN_W // 2, SCREEN_H // 2))
     # win.blit(welcomeMessage, welcomeMessageRect)
