@@ -11,7 +11,9 @@ win = pygame.display.set_mode(SCREEN_W, SCREEN_H)
 clock = pygame.time.Clock()
 steps = 10
 
-RUNNING = [pygame.image.load(os.path.join("images/outline", "_Run.png"))]
+RUNNING = [pygame.image.load(os.path.join(("images/outline", "_Run.png"))]
+
+cave_sounds = pygame.mixer.Sound("sounds/cavesounds.mp3.wav")
 
 
 class knight:
