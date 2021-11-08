@@ -5,6 +5,8 @@ from pygame import font
 pygame.init()
 pygame.font.init()
 
+# TODO learn hwo to use spreadsheets and making multiple files in to pygame
+
 # screen variables
 pygame.display.set_caption("final project")
 WIN_W = 1100
@@ -46,11 +48,15 @@ jumping = [pygame.image.load(os.path.join("images/animations/jumping", "jump.png
 cave_sounds = pygame.mixer.Sound("sounds/cavesounds.mp3.wav")
 
 
-class Knight():
+class Knight(pygame.sprite.Sprite):
     x = 50
     y = (WIN_H / 2) - 100    
     vel = 9
     def __init__(self):
+        super(Knight, self).__init__()
+        # todo adding images to sprite array
+        
+        
         self.movey = 0
         self.movex = 0
         self.frame = 0
