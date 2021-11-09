@@ -1,12 +1,19 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"name": "Stickrun-Ultimate",
-			"path": "..\\..\\..\\..\\Projects\\Stickrun-Ultimate\\Stickrun-Ultimate"
-		}
-	],
-	"settings": {}
+  "folders": [
+	{
+		"path": "..\\..\\Coding Projects\\webdevbootcamp"
+	},
+	{
+		"path": "..\\..\\Coding Projects\\Stickrun-Ultimate"
+	},
+	{
+		"name": "Game-Website",
+		"path": "..\\..\\Coding Projects\\Game-Website"
+	},
+	{
+		"name": "final-project",
+		"path": "."
+	}
+],
+  "settings": {}
 }
