@@ -1,6 +1,9 @@
 import pygame, os
-import main
 
+from pygame import sprite
+import main
+from spritesheets import SpriteSheet
+# calling file name 
 
 running = [pygame.image.load(os.path.join("images/animations/running", "run1.png")),
            pygame.image.load(os.path.join("images/animations/running", "run2.png")),
@@ -13,7 +16,7 @@ running = [pygame.image.load(os.path.join("images/animations/running", "run1.png
            pygame.image.load(os.path.join("images/animations/running", "run9.png")),
            pygame.image.load(os.path.join("images/animations/running", "run10.png"))]
 
-class player(pygame.sprite.Sprite):
+class Player(pygame.sprite.Sprite):
     #setting player vectors
     change_x = 0
     change_y = 0
@@ -36,48 +39,89 @@ class player(pygame.sprite.Sprite):
         # calling parent constructor
         pygame.sprite.Sprite.__init__(self)
         
-        sprite_sheet = SpriteSheet()
-        self.running_l = running
-        self.running_l = pygame.transform.flip(running, True, False)
-        self.running_r = running
+        sprite_sheet = SpriteSheet("_Run.png")
         
+        run = sprite_sheet.get_image(0, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(1, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(2, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(3, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(4, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(5, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(6, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(7, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(8, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(9, 120, 80, 2)
+        self.running_r.append(run)
+        run = sprite_sheet.get_image(10, 120, 80, 2)
+        self.running_r.append(run)
+        
+        # load all images and flip them
+        
+        self.walking_l = self.running_r
+        self.walking_l = pygame.transform.flip(run, True, False)
+        
+        # setting the image the player starts with
         self.image = self.running_r[0]
         
+        # set a image rect
         self.rect = self.image.get_rect()
         
-        def update(self):
-            # moving the player 
-            # gravity
-            self.calc_grav()
-            
-            # moving left/right
-            self.rect.x += self.change_x
-            pos = self.rect.x
-            
-        def calc_grav(self):
-            # calcalate gravity
-            if self.change_y == 0:
-                self.change_y = 1
-            else:
-                self.change_y += 0.35
-                
-            # checking to see if your on the ground
-            
-        def jump(self):
-            # called when the user jumps 
-            
-            self.rect.y += 2
-            
-            if self.rect.bottom >= WIN_H:
-                self.change_y = -10
-            
-        def left(self):
-            self.change_x = -6
+    def update(self):
+        # moving the player 
+        # gravity
+        self.calc_grav()
         
-        def right(self):
-            self.change_x = 6
+        # moving left/right
+        self.rect.x += self.change_x
+        pos = self.rect.x + self.level.world.shift
+
+        if self.direction == "R":
+            frame = (pos // 30) % len(self.walking_r)
+            self.image = self.walking_r[frame]
+        else:
+            frame = (pos // 30) % len(self.walking_l)
+            self.image = self.walking_l[frame]
         
-        def stop(self):
-            self.change_x = 0            
+        # move up and down
+        self.rect.y += self.change_y
+            
+            
+    def calc_grav(self):
+        # calcalate gravity
+        if self.change_y == 0:
+            self.change_y = 1
+        else:
+            self.change_y += .35
+            
+        # checking to see if your on the ground
+        if self.rect.y >= main.WIN_H = self.rect.height and self.change_y >= 0:
+            self.change_y = 0
+            self.rect.y = main.WIN_H - self.rect.height
+        
+    def jump(self):
+        # called when the user jumps 
+        
+        self.rect.y += 2
+        
+        if self.rect.bottom >= WIN_H:
+            self.change_y = -10
+        
+    def left(self):
+        self.change_x = -6
+    
+    def right(self):
+        self.change_x = 6
+    
+    def stop(self):
+        self.change_x = 0            
         
         
