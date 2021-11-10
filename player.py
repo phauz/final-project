@@ -103,7 +103,7 @@ class Player(pygame.sprite.Sprite):
             self.change_y += .35
             
         # checking to see if your on the ground
-        if self.rect.y >= main.WIN_H = self.rect.height and self.change_y >= 0:
+        if self.rect.y >= main.WIN_H == self.rect.height and self.change_y >= 0:
             self.change_y = 0
             self.rect.y = main.WIN_H - self.rect.height
         
