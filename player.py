@@ -5,16 +5,6 @@ import main
 from spritesheets import SpriteSheet
 # calling file name 
 
-running = [pygame.image.load(os.path.join("images/animations/running", "run1.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run2.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run3.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run4.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run5.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run6.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run7.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run8.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run9.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run10.png"))]
 
 class Player(pygame.sprite.Sprite):
     #setting player vectors
@@ -40,6 +30,7 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         sprite_sheet = SpriteSheet("_Run.png")
+        sprite_jump = SpriteSheet("_Jump.png")
         
         run = sprite_sheet.get_image(0, 120, 80, 2)
         self.running_r.append(run)
@@ -72,6 +63,10 @@ class Player(pygame.sprite.Sprite):
         # setting the image the player starts with
         self.image = self.running_r[0]
         
+        # jumping
+        jump = sprite_jump.get_image(1, 120, 80, 2)
+        self.jumping.append(jump)
+        
         # set a image rect
         self.rect = self.image.get_rect()
         
@@ -92,9 +87,19 @@ class Player(pygame.sprite.Sprite):
             self.image = self.walking_l[frame]
         
         # move up and down
+        if jump():
         self.rect.y += self.change_y
             
-            
+        # checking to see if your on the ground
+        block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
+        for block in block_hit_list:
+            # If we are moving right,
+            # set our right side to the left side of the item we hit
+            if self.change_x > 0:
+                self.rect.right = block.rect.left
+            elif self.change_x < 0:
+                # Otherwise if we are moving left, do the opposite.
+                self.rect.left = block.rect.right        
     def calc_grav(self):
         # calcalate gravity
         if self.change_y == 0:
@@ -102,7 +107,8 @@ class Player(pygame.sprite.Sprite):
         else:
             self.change_y += .35
             
-        # checking to see if your on the ground
+
+                  
         if self.rect.y >= main.WIN_H == self.rect.height and self.change_y >= 0:
             self.change_y = 0
             self.rect.y = main.WIN_H - self.rect.height
