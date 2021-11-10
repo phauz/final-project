@@ -1,8 +1,7 @@
 import pygame
 import os
-
-import platforms
-import main
+from src.platforms import Platform
+import src.main
 class Level():
     # create child classes for each level
     
@@ -27,12 +26,12 @@ class Level():
         self.platform_list.update()
         self.enemy_list.update()
         
-    def draw():
+    def draw(self, win):
         # draws everything on this level
         
         # don't shift the background to add depths 
         
-        win.fill(176, 224, 230)
+        win.fill((176, 224, 230))
         win.blit(self.background,(self.world_shift // 3, 0))
         
     def shift_world(self, shift_x):
@@ -62,12 +61,12 @@ class Level_01(Level):
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
-        level = [ [platforms.LONG_GRASS, 0, 1545],
-                  [platforms.VERTICAL_GRASS, 1561, 0]]
+        level = [ [Platform.LONG_GRASS, 0, 1545],
+                  [Platform.VERTICAL_GRASS, 1561, 0]]
         
         # Go through the array above and add platforms
         for platform in level:
-            block = platforms.Platform(platform[0])
+            block = Platform.Platform(platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
             block.player = self.player

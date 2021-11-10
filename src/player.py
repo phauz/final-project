@@ -1,20 +1,9 @@
 import pygame, os
 
 from pygame import sprite
-import main
+from main import main
 from spritesheets import SpriteSheet
 # calling file name 
-
-running = [pygame.image.load(os.path.join("images/animations/running", "run1.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run2.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run3.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run4.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run5.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run6.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run7.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run8.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run9.png")),
-           pygame.image.load(os.path.join("images/animations/running", "run10.png"))]
 
 class Player(pygame.sprite.Sprite):
     #setting player vectors
@@ -111,9 +100,7 @@ class Player(pygame.sprite.Sprite):
         # called when the user jumps 
         
         self.rect.y += 2
-        
-        if self.rect.bottom >= WIN_H:
-            self.change_y = -10
+        platform_hit_list = pygame.sprite.spritecollide(self, self.level.platfrom_list, False)
         
     def left(self):
         self.change_x = -6

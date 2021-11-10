@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "final-project",
+			"path": "."
+		},
+		{
+			"name": "Platform Game",
+			"path": "..\\..\\pygame games\\Platform Game"
+		},
+		{
+			"name": "rpg game",
+			"path": "..\\rpg game"
+		},
+		{
+			"name": "edovshitler",
+			"path": "..\\save the earth\\edovshitler"
+		},
+		{
+			"name": "rpg_tactical_fantasy_game",
+			"path": "..\\rpg_tactical_fantasy_game"
+		}
+	],
+	"settings": {}
+}
