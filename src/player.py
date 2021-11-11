@@ -1,7 +1,7 @@
 import pygame, os
 
 from pygame import sprite
-import main
+from main import main
 from spritesheets import SpriteSheet
 # calling file name 
 
@@ -87,8 +87,7 @@ class Player(pygame.sprite.Sprite):
             self.image = self.walking_l[frame]
         
         # move up and down
-        if jump():
-        self.rect.y += self.change_y
+        self.rect.y = self.change_y
             
         # checking to see if your on the ground
         block_hit_list = pygame.sprite.spritecollide(self, self.level.platform_list, False)
@@ -117,9 +116,7 @@ class Player(pygame.sprite.Sprite):
         # called when the user jumps 
         
         self.rect.y += 2
-        
-        if self.rect.bottom >= WIN_H:
-            self.change_y = -10
+        platform_hit_list = pygame.sprite.spritecollide(self, self.level.platfrom_list, False)
         
     def left(self):
         self.change_x = -6
